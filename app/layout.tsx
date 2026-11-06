@@ -3,6 +3,7 @@ import "@fontsource/gloock/400.css";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
 import { profile } from "@/lib/data";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function getSiteUrl(): URL {
   const raw =
@@ -36,7 +37,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
