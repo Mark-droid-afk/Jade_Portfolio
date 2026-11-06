@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-midnight font-sans text-white antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid #8adfd8;
+  outline-offset: 2px;
+}
+
+.on-light :focus-visible {
+  outline-color: #15213b;
+}
+
+/* Marker-pen underline */
+.hl {
+  background: linear-gradient(transparent 58%, #ddf16a 58%, #ddf16a 92%, transparent 92%);
+  padding: 0 0.12em;
+}
+
+/* Faint diagram grid, a nod to system architecture drawings */
+.grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.welcome-rise {
+  opacity: 0;
+  animation: rise 0.7s ease-out forwards;
+}
+.welcome-progress {
+  animation: progress linear forwards;
+}
+.sheet-in {
+  animation: sheet-in 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
