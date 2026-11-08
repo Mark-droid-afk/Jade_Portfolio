@@ -9,7 +9,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/home"
-        className="mt-8 inline-block w-fit rounded-full bg-aqua px-6 py-3 text-sm font-bold text-midnight"
+        className="mt-8 inline-block w-fit rounded-full bg-mint px-6 py-3 text-sm font-bold text-abyss"
       >
         Go to homepage
       </Link>

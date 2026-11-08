@@ -2,34 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light/dark surfaces for the light sections. Dark bands stay dark in both themes. */
+:root {
+  --mist: 230 244 236;
+  --paper: 247 251 249;
+  --sand: 241 230 214;
+  --ink: 7 38 30;
+  --muted: 70 100 90;
+  --card: 255 255 255;
+}
+html.dark {
+  --mist: 10 46 36;
+  --paper: 6 34 28;
+  --sand: 14 52 41;
+  --ink: 230 244 236;
+  --muted: 157 191 178;
+  --card: 16 66 52;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  @apply bg-midnight font-sans text-white antialiased;
+  @apply bg-abyss font-sans text-white antialiased;
 }
 
 :focus-visible {
-  outline: 2px solid #8adfd8;
+  outline: 2px solid #72f2b0;
   outline-offset: 2px;
 }
-
 .on-light :focus-visible {
-  outline-color: #15213b;
+  outline-color: rgb(var(--ink));
 }
 
-/* Marker-pen underline */
-.hl {
-  background: linear-gradient(transparent 58%, #ddf16a 58%, #ddf16a 92%, transparent 92%);
-  padding: 0 0.12em;
+/* Concentric rings, echoing the orbit in the logo */
+.rings-bg {
+  background-image: repeating-radial-gradient(
+    circle at 72% 42%,
+    transparent 0 58px,
+    rgba(114, 242, 176, 0.07) 59px 60px
+  );
 }
-
-/* Faint diagram grid, a nod to system architecture drawings */
-.grid-bg {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 48px 48px;
+.rings-bg-center {
+  background-image: repeating-radial-gradient(
+    circle at 50% 50%,
+    transparent 0 58px,
+    rgba(114, 242, 176, 0.07) 59px 60px
+  );
 }
 
 .no-scrollbar {
@@ -39,10 +60,124 @@ body {
   display: none;
 }
 
-@keyframes rise {
+/* Marker-pen underline that draws itself when its section scrolls in */
+.hl {
+  background: linear-gradient(transparent 58%, #72f2b0 58%, #72f2b0 92%, transparent 92%) no-repeat;
+  background-size: 100% 100%;
+  padding: 0 0.12em;
+  color: #07261e;
+  transition: background-size 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s;
+}
+@media (scripting: enabled) {
+  .hl {
+    background-size: 0% 100%;
+  }
+  .in .hl,
+  .hl.in {
+    background-size: 100% 100%;
+  }
+}
+
+/* Scroll reveal (hidden state only applies when JavaScript is available) */
+.reveal {
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+@media (scripting: enabled) {
+  .reveal:not(.in) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* Headline lines slide up out of a mask */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+.mask-line > span {
+  display: block;
+  transform: translateY(105%);
+  animation: mask-up 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes mask-up {
+  to {
+    transform: none;
+  }
+}
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes float-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -57,26 +192,35 @@ body {
     transform: scaleX(1);
   }
 }
-@keyframes sheet-in {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
 
-.welcome-rise {
-  opacity: 0;
-  animation: rise 0.7s ease-out forwards;
+.float-y {
+  animation: float-y 4.5s ease-in-out infinite alternate;
 }
-.welcome-progress {
-  animation: progress linear forwards;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.ping-soft {
+  animation: ping-soft 2s ease-out infinite;
+}
+.pop-in {
+  animation: pop-in 0.35s ease-out both;
+}
+.fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+.modal-in {
+  animation: modal-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .sheet-in {
   animation: sheet-in 0.25s ease-out;
+}
+.welcome-progress {
+  animation: progress linear forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -87,6 +231,17 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+  .reveal:not(.in) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hl {
+    background-size: 100% 100% !important;
   }
 }

@@ -5,15 +5,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        midnight: "#0A1A36",
-        deep: "#132A4F",
-        aqua: "#8ADFD8",
-        lilac: "#ECE5F4",
-        peach: "#F7DCCB",
-        lime: "#DDF16A",
-        ink: "#15213B",
-        muted: "#55617E",
-        paper: "#FBFAFD",
+        abyss: "#04201A",
+        forest: "#0B3328",
+        mint: "#72F2B0",
+        jade: "#06BF62",
+        coral: "#E5402B",
+        mist: "rgb(var(--mist) / <alpha-value>)",
+        sand: "rgb(var(--sand) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
+        paper: "rgb(var(--paper) / <alpha-value>)",
       },
       fontFamily: {
         display: ["Gloock", "Georgia", "serif"],

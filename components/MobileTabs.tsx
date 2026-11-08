@@ -27,7 +27,7 @@ export default function MobileTabs() {
   return (
     <nav
       aria-label="Main"
-      className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-5 gap-1 rounded-3xl border border-white/10 bg-midnight/90 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-xl shadow-black/40 backdrop-blur md:hidden"
+      className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-5 gap-1 rounded-3xl border border-white/10 bg-abyss/90 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-xl shadow-black/40 backdrop-blur md:hidden"
     >
       {TABS.map(({ id, href, label, Icon }) => (
         <a
@@ -35,7 +35,7 @@ export default function MobileTabs() {
           href={href}
           aria-current={active === id ? "true" : undefined}
           className={`flex flex-col items-center gap-0.5 rounded-2xl py-2 text-[11px] font-semibold transition-colors ${
-            active === id ? "bg-white/10 text-aqua" : "text-white/70"
+            active === id ? "bg-white/10 text-mint" : "text-white/70"
           }`}
         >
           <Icon className="h-5 w-5" />
@@ -45,7 +45,7 @@ export default function MobileTabs() {
       <button
         type="button"
         onClick={() => window.dispatchEvent(new Event("gurrabot:open"))}
-        className="flex flex-col items-center gap-0.5 rounded-2xl bg-aqua py-2 text-[11px] font-bold text-midnight"
+        className="flex flex-col items-center gap-0.5 rounded-2xl bg-mint py-2 text-[11px] font-bold text-abyss"
       >
         <SparkleIcon className="h-5 w-5" />
         Ask

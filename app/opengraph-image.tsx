@@ -14,7 +14,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#0A1A36",
+          background: "#04201A",
           color: "#ffffff",
           padding: "80px",
         }}
@@ -22,13 +22,13 @@ export default function OgImage() {
         <div style={{ display: "flex", fontSize: 84, fontWeight: 800, lineHeight: 1.05 }}>
           Mark Jade D. Gurrobat
         </div>
-        <div style={{ display: "flex", marginTop: 24, fontSize: 40, color: "#8ADFD8" }}>
+        <div style={{ display: "flex", marginTop: 24, fontSize: 40, color: "#72F2B0" }}>
           BSIT Student & Full-Stack Developer
         </div>
-        <div style={{ display: "flex", marginTop: 12, fontSize: 28, color: "#B7C2DA" }}>
+        <div style={{ display: "flex", marginTop: 12, fontSize: 28, color: "#A9D6C2" }}>
           Ask Gurrabot, my AI assistant, about my work
         </div>
-        <div style={{ display: "flex", marginTop: 56, width: 140, height: 10, background: "#DDF16A" }} />
+        <div style={{ display: "flex", marginTop: 56, width: 140, height: 10, background: "#72F2B0" }} />
       </div>
     ),
     size

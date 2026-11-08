@@ -60,3 +60,48 @@ export const SendIcon = ({ className }: P) => (
     <path d="M11.8 13.7 20 4" />
   </svg>
 );
+
+export const ExternalIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M7 17 17 7" />
+    <path d="M8.5 7H17v8.5" />
+  </svg>
+);
+export const PlusIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+export const PinIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 32" className={className} aria-hidden>
+    <path
+      d="M12 1C6.5 1 2.5 5 2.5 10.2c0 6.6 8 15.6 9.1 16.8.2.2.6.2.8 0 1.1-1.2 9.1-10.2 9.1-16.8C21.5 5 17.5 1 12 1Z"
+      fill="#E5402B"
+    />
+    <circle cx="12" cy="10.2" r="3.6" fill="#fff" />
+  </svg>
+);
+
+export const SunIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" />
+  </svg>
+);
+export const MoonIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
+  </svg>
+);
+export const SearchIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <circle cx="11" cy="11" r="6.5" />
+    <path d="m16 16 4.5 4.5" />
+  </svg>
+);
+export const ThumbIcon = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M7 11v9H4.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1H7Z" />
+    <path d="M7 11l4-7c1.5 0 2.5 1 2.5 2.5V9H19a1.5 1.5 0 0 1 1.5 1.8l-1.3 7A2 2 0 0 1 17.2 19.5H7" />
+  </svg>
+);
